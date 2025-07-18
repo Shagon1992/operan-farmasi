@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operan Farmasi - Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      margin: 0;
+      background: #f5f7fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login-container {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 360px;
+    }
+    h2 {
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-weight: 600;
+    }
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      background: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #1e40af;
+    }
+    .error {
+      color: red;
+      font-size: 0.9rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login Operan Farmasi</h2>
+    <div class="error" id="error-msg"></div>
+    <input type="text" id="username" placeholder="Username" />
+    <input type="password" id="password" placeholder="Password" />
+    <button onclick="login()">Login</button>
+  </div>
+
+  <script>
+    const allowedUsers = {
+      log: 'log',
+      ko: 'ko',
+      depo: 'depo'
+    };
+
+    function login() {
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value.trim();
+      const errorMsg = document.getElementById('error-msg');
+
+      if (!user || !pass) {
+        errorMsg.textContent = 'Mohon isi username dan password.';
+        return;
+      }
+
+      if (allowedUsers[user] && allowedUsers[user] === pass) {
+        // Simpan dua informasi ke localStorage
+        localStorage.setItem('userRuang', user);    // untuk kebutuhan ruang
+        localStorage.setItem('username', user);     // untuk catat siapa yang login
+
+        window.location.href = 'dashboard.html';
+      } else {
+        errorMsg.textContent = 'Username atau password salah.';
+      }
+    }
+
+    // Tekan Enter juga bisa login
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        login();
+      }
+    });
+    
+  </script>
+</body>
+</html>

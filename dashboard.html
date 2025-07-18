@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard Operan</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <button class="logout" onclick="logout()">Logout</button>
+  <h1>Operan Farmasi</h1>
+
+  <div class="top-bar">
+    <button class="btn" onclick="toggleForm()">+ Tambah Operan</button>
+  </div>
+
+  <!-- 🔧 Perbaikan: bungkus input dalam <form> agar bisa disubmit -->
+  <form class="form-container" id="form">
+    <input type="date" id="tanggal" />
+    <input type="text" id="ruang" placeholder="Ruang" readonly />
+    <textarea id="operan" rows="4" placeholder="Isi operan..."></textarea>
+    <select id="status">
+      <option value="Aktif">Aktif</option>
+      <option value="Non-Aktif">Non-Aktif</option>
+    </select>
+    <button class="btn" type="submit">Simpan</button>
+  </form>
+
+  <br>
+  <hr>
+
+  <div class="top-bar">
+    <input type="text" id="search" placeholder="Cari operan..." oninput="filterTable()" />
+  </div>
+  <table id="operanTable">
+    <thead>
+      <tr>
+        <th>Operan</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+  </table>
+
+  <!-- Supabase dan kode JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script src="supabase.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>
