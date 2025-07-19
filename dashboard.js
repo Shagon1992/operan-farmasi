@@ -82,7 +82,7 @@ async function loadData() {
         <div class="operan-meta">
         <small>${item.tanggal} | ${item.ruang} | ${item.status || "Belum"}</small>
         </div>
-        <div>${item.operan}</div>
+        <div>${item.operan.replace(/\n/g, "<br>")}</div>
     `;
 
     // Ganti onclick dengan addEventListener
